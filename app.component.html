@@ -1,0 +1,49 @@
+<div> 
+  <mat-toolbar color="primary">
+    <div fxShow="true" fxHide.gt-sm="true">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <a mat-button class="companyName" routerLink="/">
+      <span>P2P</span>
+    </a>
+    <span class="example-spacer"></span>
+    <div fxShow="true" fxHide.lt-md="true">
+      <a mat-button routerLink="/Map">Map</a>
+      <a mat-button routerLink="/Timeline">Timeline</a>
+      <a mat-button routerLink="/Profile">Profile</a>
+      <a mat-button routerLink="/history">history</a>
+    </div>
+
+  </mat-toolbar>
+  <mat-sidenav-container fxFlexFill class="example-container">
+
+    <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
+      <div fxLayout="column">
+        <a mat-button routerLink="/Map">Map</a>
+        <a mat-button routerLink="/Timeline">Timeline</a>
+        <a mat-button routerLink="/Profile">Profile</a>
+      <a mat-button routerLink="/history">history</a>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+      <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        <agm-kml-layer url="https://drive.google.com/uc?export=download&id=1MOmmmwgKCJoTt-ASvOywFomC9YpyQvTW"></agm-kml-layer>
+      </agm-map>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<div id="chart">
+  <apx-chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [fill]="chartOptions.fill"
+    [legend]="chartOptions.legend"
+    [plotOptions]="chartOptions.plotOptions"
+    [xaxis]="chartOptions.xaxis"
+  ></apx-chart>
+</div>
